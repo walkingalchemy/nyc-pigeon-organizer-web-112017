@@ -66,10 +66,11 @@ def nyc_pigeon_organizer(data)
     values.each do |value, pigeons|
       pigeons.each do |pigeon|
         binding.pry
-        if pigeons_tagged.has_key?(pigeon)
-          pigeons_tagged[pigeon][attribute].push(values)
+        if pigeons_tagged[pigeon][attribute]
+          pigeons_tagged[pigeon][attribute].push(value)
         else
-          pigeons_tagged[pigeon][attribute] = values
+          pigeons_tagged[pigeon][attribute] = []
+          pigeons_tagged[pigeon][attribute].push(value)
         end
       end
     end
