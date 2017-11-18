@@ -65,33 +65,11 @@ def nyc_pigeon_organizer(data)
   data.each do |attribute, values|
     values.each do |value, pigeons|
       pigeons.each do |pigeon|
-        binding.pry
-        if pigeons_tagged[pigeon][attribute]
-          pigeons_tagged[pigeon][attribute].push(value)
-        else
-          pigeons_tagged[pigeon][attribute] = []
-          pigeons_tagged[pigeon][attribute].push(value)
-        end
+        pigeons_tagged[pigeon] ||= {}
+        pigeons_tagged[pigeon][attribute] ||= []
+        pigeons_tagged[pigeon][attribute] << value.to_s
       end
     end
   end
+  pigeons_tagged
 end
-
-nyc_pigeon_organizer(pigeon_data)
-
-# def reformat_languages(langs)
-#   # your code here
-#   languages_tagged = {}
-#   langs.each do |style, languages|
-#     languages.each do |language, type|
-#       if languages_tagged.has_key?(language)
-#         languages_tagged[language][:style].push(style)
-#       else
-#         languages_tagged[language] = type
-#         languages_tagged[language][:style] = []
-#         languages_tagged[language][:style].push(style)
-#       end
-#     end
-#   end
-#   languages_tagged
-# end
